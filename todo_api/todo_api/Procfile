@@ -1,1 +1,1 @@
-web: gunicorn todo_api.wsgi
+web: gunicorn todo_api.wsgi:application --bind 0.0.0.0:$PORT
