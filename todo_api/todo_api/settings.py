@@ -25,8 +25,16 @@ SECRET_KEY = 'django-insecure-67elygua12g1m+d&c@$o#0e*uz+kb%5q#&pq+@gmcs^bk%d%v@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+import os
 
+# Add at the top after imports
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1', 
+    '.onrender.com',  # Allow all Render.com subdomains
+]
 
 # Application definition
 
@@ -124,3 +132,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Add at the end
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
